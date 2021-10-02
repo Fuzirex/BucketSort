@@ -9,15 +9,15 @@ public class BucketSort {
         Random rd = new Random();
 
         // Sort de números inteiros
-        int[] intArray = new int[50];
+        int[] array = new int[50];
 
-        for (int i = 0; i < intArray.length; i++)
-            intArray[i] = rd.nextInt(200);
+        for (int i = 0; i < array.length; i++)
+            array[i] = rd.nextInt(200);
 
-        bucketSort(intArray);
+        bucketSort(array);
 
         System.out.println("Array de inteiros ordenada: ");
-        for (int valor : intArray)
+        for (int valor : array)
             System.out.print(valor + " | ");
     }
 
@@ -43,8 +43,8 @@ public class BucketSort {
         }
 
         // Ordena cada um dos baldes
-        for (Vector<Integer> integers : buckets)
-            Collections.sort(integers);
+        for (Vector<Integer> bucket : buckets)
+            Collections.sort(bucket);
 
         System.out.println("Buckets:");
         for (Vector<Integer> bucket : buckets)
