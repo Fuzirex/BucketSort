@@ -14,14 +14,14 @@ public class BucketSort {
         for (int i = 0; i < intArray.length; i++)
             intArray[i] = rd.nextInt(200);
 
-        intBucketSort(intArray);
+        bucketSort(intArray);
 
         System.out.println("Array de inteiros ordenada: ");
         for (int valor : intArray)
             System.out.print(valor + " | ");
     }
 
-    static void intBucketSort(int[] arr) {
+    static void bucketSort(int[] arr) {
         // Pega a quantidade de valores na array
         int tamanhoDaArray = arr.length;
         // Pega o maior valor existente na array
