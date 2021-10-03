@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class BucketSort {
 
@@ -21,20 +21,20 @@ public class BucketSort {
             System.out.print(valor + " | ");
     }
 
-    static void bucketSort(int[] arr) {
+    static void bucketSort(int[] array) {
         // Pega a quantidade de valores na array
-        int tamanhoDaArray = arr.length;
+        int tamanhoDaArray = array.length;
         // Pega o maior valor existente na array
-        int maiorValor = Arrays.stream(arr).max().getAsInt();
+        int maiorValor = Arrays.stream(array).max().getAsInt();
 
         // Cria N+1 baldes vazios, N sendo o tamanho da array passada para o método
-        Vector<Integer>[] buckets = new Vector[tamanhoDaArray + 1];
+        ArrayList<Integer>[] buckets = new ArrayList[tamanhoDaArray + 1];
 
         for (int i = 0; i < buckets.length; i++)
-            buckets[i] = new Vector<Integer>();
+            buckets[i] = new ArrayList<Integer>();
 
         // Coloca os valores da array nos seus devidos buckets
-        for (int valor : arr) {
+        for (int valor : array) {
             //Calcula qual o balde em que o valor sendo iterado deve ser colocado
             int index = valor * tamanhoDaArray / maiorValor;
 
@@ -43,17 +43,32 @@ public class BucketSort {
         }
 
         // Ordena cada um dos baldes
-        for (Vector<Integer> bucket : buckets)
+        for (ArrayList<Integer> bucket : buckets)
             Collections.sort(bucket);
+            //insertionSort(bucket);
 
         System.out.println("Buckets:");
-        for (Vector<Integer> bucket : buckets)
+        for (ArrayList<Integer> bucket : buckets)
             System.out.println(bucket);
 
         // Junta todos os valores ordenados dos baldes na nova array
         int index = 0;
-        for (Vector<Integer> bucket : buckets)
+        for (ArrayList<Integer> bucket : buckets)
             for (Integer valor : bucket)
-                arr[index++] = valor;
+                array[index++] = valor;
+    }
+
+    public static void insertionSort(ArrayList<Integer> array) {
+        for (int i = 1; i < array.size(); i++){
+            int aux = array.get(i);
+            int j = i;
+
+            while ((j > 0) && (array.get(j-1) > aux)){
+                array.set(j, array.get(j-1));
+                j -= 1;
+            }
+
+            array.set(j, aux);
+        }
     }
 }
